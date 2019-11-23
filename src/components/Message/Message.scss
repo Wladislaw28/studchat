@@ -1,5 +1,75 @@
-.button {
-    &--large {
-        height: 56px !important;
+@import '~styles/variables';
+.message {
+    $self: &;
+    &__content {
+        display: flex;
+        max-width: 440px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    &__avatar {
+        display: flex;
+        flex-direction: column-reverse;
+        img {
+            border-radius: 50px;
+            width: 33px;
+            height: 33px;
+            margin-right: 13px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            line-height: 31px;
+        }
+    }
+    &__bubble {
+        background: $blue;
+        box-shadow: 0px 5px 5px rgba(54, 116, 255, 0.196733);
+        border-radius: 12px 12px 12px 0px;
+        padding: 15px;
+        margin-bottom: 8px;
+    }
+    &__date {
+        font-size: 12px;
+        opacity: 0.5;
+    }
+    &__icon-readed {
+        position: absolute;
+        bottom: 20px;
+        left: -25px;
+    }
+    &__text {
+        color: #fff;
+        line-height: 20px;
+    }
+    &--isme {
+        display: flex;
+        flex-direction: row-reverse;
+        #{$self}__content {
+            margin-bottom: 15px;
+            flex-direction: row-reverse;
+        }
+        #{$self}__avatar {
+            img {
+                margin-right: 0;
+                margin-left: 13px;
+            }
+        }
+        #{$self}__info {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        #{$self}__date {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        #{$self}__bubble {
+            background: $white;
+            border: 1px solid #ececec;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.0220444);
+            border-radius: 12px 12px 0px 12px;
+            order: 2;
+            #{$self}__text {
+                color: $black;
+            }
+        }
     }
 }
