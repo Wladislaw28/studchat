@@ -8,7 +8,21 @@ const Home = () => (
         <Message
             avatar='https://sun9-55.userapi.com/c850428/v850428459/8d1f9/9cZ1YRjKx3Y.jpg?ava=1'
             text='Calam,Brut! How are you ?'
-            date='Tue Nov 22 2019 13:00:50 GMT+0300' />
+            date='Tue Nov 22 2019 13:00:50 GMT+0300'
+            attachments={[
+                {
+                    filename: 'image1.jpg',
+                    url: 'https://source.unsplash.com/100x100/?random=1&nature,water'
+                },
+                {
+                    filename: 'image2.jpg',
+                    url: 'https://source.unsplash.com/100x100/?random=2&nature,water'
+                },
+                {
+                    filename: 'image3.jpg',
+                    url: 'https://source.unsplash.com/100x100/?random=3&nature,water'
+                }
+            ]}/>
         <Message
             avatar='https://sun9-55.userapi.com/c850428/v850428459/8d1f9/9cZ1YRjKx3Y.jpg?ava=1'
             text='Hi! I feel good'
@@ -21,6 +35,13 @@ const Home = () => (
             date='Tue Nov 23 2019 17:50:50 GMT+0300'
             isMe={true}
             isReaded={false} />
+        <Message
+            avatar='https://sun9-55.userapi.com/c850428/v850428459/8d1f9/9cZ1YRjKx3Y.jpg?ava=1'
+            text='Nice job'
+            date='Tue Nov 24 2019 16:37:50 GMT+0300'
+            isMe={true}
+            isReaded={false} 
+            />
     </section>
 );
 
