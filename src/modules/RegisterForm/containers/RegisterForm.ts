@@ -1,31 +1,21 @@
-import { withFormik } from 'formik';
-import RegisterForm from '../components/RegisterForm';
+import { withFormik, FormikErrors } from 'formik';
+import { RegisterForm, RegisterFormValues } from '../components/RegisterForm';
+import { validateForm } from '../../../utils/validate';
 
-export default withFormik({
-    validate: values => {
-        let errors: any = {};
-        if (!values.email) {
-            errors.email = 'Введите email';
-        } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
-                values.email
-            )
-        ) {
-            errors.email = 'Invalid email address';
-        }
-        if (!values.password) {
-            errors.password = 'Введите пароль'
-        } else if (
-            !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i.test(
-                values.password
-            )
-        ) {
-            errors.password = 'Пароль должен содержать минимум восемь символов, как минимум одна буква и одна цифра'
-        }
+export default withFormik<{}, RegisterFormValues>({
+    enableReinitialize: true,
+    mapPropsToValues: () => ({
+        login: '',
+        password: '',
+        email: ''
+    }),
+    validate: (values: RegisterFormValues) => {
+        let errors: FormikErrors<RegisterFormValues> = {};
+        validateForm({ isAuth: false, values, errors });
         return errors;
     },
 
-    handleSubmit: (values, { setSubmitting }) => {
+    handleSubmit: (values: RegisterFormValues, { setSubmitting }) => {
         setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
@@ -33,4 +23,4 @@ export default withFormik({
     },
 
     displayName: 'RegisterForm', // helps with React DevTools
-})(RegisterForm);;
+})(RegisterForm);

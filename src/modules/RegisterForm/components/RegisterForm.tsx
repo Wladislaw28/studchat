@@ -1,18 +1,27 @@
 import React from 'react';
 import { Form, Icon, Input } from 'antd';
 import { Button, WhiteBlock } from '../../../components';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { FormikProps } from 'formik';
+import { validateField } from '../../../utils/helper';
 
 const success = false;
 
-const RegisterForm = (props: any) => {
+export interface RegisterFormValues {
+    login: string;
+    password: string;
+    email: string;
+}
+
+export const RegisterForm = (props: FormikProps<RegisterFormValues>) => {
     const {
         values,
         touched,
         errors,
         handleChange,
         handleBlur,
-        handleSubmit
+        handleSubmit,
+        isValid
     } = props;
     return (
         <div>
@@ -23,27 +32,32 @@ const RegisterForm = (props: any) => {
             <WhiteBlock>
                 {!success ?
                     <Form onSubmit={handleSubmit} className="login-form">
-                        <Form.Item validateStatus={!touched.email ? '' : errors.email ? 'error' : 'success'}
+                        <Form.Item validateStatus={validateField("email", touched, errors)}
                             help={!touched.email ? '' : errors.email} hasFeedback>
                             <Input
                                 id="email"
                                 type="email"
                                 prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                placeholder="Email" 
+                                placeholder="Email"
                                 size="large"
                                 value={values.email}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             />
                         </Form.Item>
-                        <Form.Item hasFeedback>
+                        <Form.Item validateStatus={validateField("login", touched, errors)}
+                            help={!touched.login ? '' : errors.login} hasFeedback>
                             <Input
+                                id="login"
                                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                 placeholder="Ваше имя"
                                 size="large"
+                                value={values.login}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
                             />
                         </Form.Item>
-                        <Form.Item validateStatus={!touched.password ? '' : errors.password ? 'error' : 'success'}
+                        <Form.Item validateStatus={validateField("password", touched, errors)}
                             help={!touched.password ? '' : errors.password} hasFeedback>
                             <Input
                                 id="password"
@@ -64,6 +78,7 @@ const RegisterForm = (props: any) => {
                                 size="large"
                             />
                         </Form.Item>
+                        {!isValid && 'Error'}
                         <Form.Item>
                             <Button onClick={handleSubmit} type="primary" size='large'>
                                 Зарегистироваться
@@ -84,6 +99,4 @@ const RegisterForm = (props: any) => {
             </WhiteBlock>
         </div>
     );
-}
-
-export default RegisterForm;
+};
