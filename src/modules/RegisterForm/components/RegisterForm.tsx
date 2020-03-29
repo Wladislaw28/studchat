@@ -23,28 +23,37 @@ const RegisterForm = (props: any) => {
             <WhiteBlock>
                 {!success ?
                     <Form onSubmit={handleSubmit} className="login-form">
-                        <Form.Item validateStatus={!touched.email ? '' : errors.email ? 'error' : 'success'} hasFeedback>
+                        <Form.Item validateStatus={!touched.email ? '' : errors.email ? 'error' : 'success'}
+                            help={!touched.email ? '' : errors.email} hasFeedback>
                             <Input
                                 id="email"
+                                type="email"
                                 prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                placeholder="Email" size="large"
+                                placeholder="Email" 
+                                size="large"
                                 value={values.email}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             />
                         </Form.Item>
-                        <Form.Item validateStatus='success' hasFeedback>
+                        <Form.Item hasFeedback>
                             <Input
                                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                placeholder="Ваше имя" size="large"
+                                placeholder="Ваше имя"
+                                size="large"
                             />
                         </Form.Item>
-                        <Form.Item>
+                        <Form.Item validateStatus={!touched.password ? '' : errors.password ? 'error' : 'success'}
+                            help={!touched.password ? '' : errors.password} hasFeedback>
                             <Input
-                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                id="password"
                                 type="password"
-                                placeholder="Пароль"
+                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                 size="large"
+                                placeholder="Пароль"
+                                value={values.password}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
                             />
                         </Form.Item>
                         <Form.Item>
@@ -58,7 +67,7 @@ const RegisterForm = (props: any) => {
                         <Form.Item>
                             <Button onClick={handleSubmit} type="primary" size='large'>
                                 Зарегистироваться
-                                </Button>
+                            </Button>
                         </Form.Item>
                         <Link className="auth__registr-link" to='/login'>
                             Войти в аккаунт
