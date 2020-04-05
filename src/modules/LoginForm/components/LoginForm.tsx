@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Icon, Input } from 'antd';
 import { Button, WhiteBlock } from '../../../components';
 import { Link } from 'react-router-dom';
-import { validateField } from '../../../utils/helper';
+import { validateField } from '../../../utils/helper/validateField';
 import { FormikProps } from 'formik';
 
 export interface LoginFormValues {

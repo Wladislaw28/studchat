@@ -3,7 +3,7 @@ import { Form, Icon, Input } from 'antd';
 import { Button, WhiteBlock } from '../../../components';
 import { Link } from 'react-router-dom';
 import { FormikProps } from 'formik';
-import { validateField } from '../../../utils/helper';
+import { validateField } from '../../../utils/helper/validateField';
 
 const success = false;
 
@@ -95,7 +95,6 @@ export const RegisterForm = (props: FormikProps<RegisterFormValues>) => {
                         <h3>Подтвердите свой аккаунт</h3>
                         <p>На вашу почту отправлено письмо с ссылкой на подтверждение аккаунта.</p>
                     </div>}
-
             </WhiteBlock>
         </div>
     );
