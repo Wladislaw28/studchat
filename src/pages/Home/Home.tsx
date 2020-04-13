@@ -1,5 +1,5 @@
 import React from 'react';
-import { Message } from '../../components';
+// import { Message } from '../../components';
 import { DialogItem } from '../../components';
 
 import './Home.scss';
@@ -7,7 +7,18 @@ import './Home.scss';
 const Home = () => (
     <section className='home'>
         <div className="dialogs">
-            <DialogItem />
+            <DialogItem user={{
+                fullName: 'Arrarat Muhamed',
+                isOnline: true
+            }} unreaded={3} />
+            <DialogItem user={{
+                fullName: 'Valdis Miha',
+                isOnline: false
+            }} unreaded={100} />
+            <DialogItem user={{
+                fullName: 'Pidoras Pidorski',
+                isOnline: true
+            }} />
         </div>
 
         {/* <Message

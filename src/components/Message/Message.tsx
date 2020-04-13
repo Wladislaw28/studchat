@@ -1,12 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
-import readed from 'assets/img/readed.svg';
-import noreaded from 'assets/img/noreaded.svg';
 import { Time } from '../../components';
+import { IconReaded } from '../../components';
 
 import './Message.scss';
 
-interface IMessage {
+interface IMessageProps {
     avatar: string;
     text?: string;
     date?: string;
@@ -17,11 +16,10 @@ interface IMessage {
     isMe?: boolean;
 }
 
-const Message = ({ avatar, user, text, date, isMe, isReaded, attachments, isTyping }: IMessage) => (
+const Message = ({ avatar, user, text, date, isMe, isReaded, attachments, isTyping }: IMessageProps) => (
     <div className={classNames("message", { "message--isme": isMe, "message--is-typing": isTyping })}>
         <div className="message__content">
-            {isMe && <img className="message__icon-readed"
-                src={isReaded === true ? readed : noreaded} alt="Checked icon" />}
+            {(isMe && isReaded) && <IconReaded isMe={isMe} isReaded={isReaded} />}
             <div className="message__avatar">
                 <img src={avatar} />
             </div>
