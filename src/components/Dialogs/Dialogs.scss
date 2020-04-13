@@ -1,0 +1,99 @@
+@import "~styles/variables";
+.dialogs {
+    width: 280px;
+    &__item {
+        display: flex;
+        cursor: pointer;
+        margin-bottom: 20px;
+        $item: &;
+
+        &-avatar {
+            position: relative;
+            flex: 0 0 40px;
+            height: 40px;
+            width: 40px;
+            margin-right: 10px;
+            img {
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+            }
+        }
+
+        &--online {
+            #{$item}-avatar {
+                &::before {
+                    display: block;
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    content: '';
+                    background-color: $green;
+                    border-radius: 30px;
+                    width: 13px;
+                    height: 13px;
+                    border: 3px solid #ffff;
+                }
+            }
+        }
+
+        &-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+            &-top {
+                display: flex;
+                flex-wrap: wrap;
+                h1 {
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: #202020;
+                    flex: 1;
+                    margin-bottom: 5px;
+                }
+                span {
+                    font-size: 12px;
+                    line-height: 14px;
+                    color: #202020;
+                    opacity: 0.4;
+                }
+            }
+            &-bottom {
+                position: relative;
+                display: flex;
+                flex-wrap: wrap;
+                p {
+                    opacity: 0.4;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    width: 200px;
+                    height: 1.2em;
+                    white-space: nowrap;
+                }
+                &-count {
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    background: #f46b6b;
+                    font-size: 11px;
+                    color: #ffffff;
+                    text-align: center;
+                    font-weight: 500;
+                    width: 100%;
+                    min-width: 23px;
+                    max-width: 25px;
+                    height: 24px;
+                    line-height: 18px;
+                    border: 3px solid #ffffff;
+                    border-radius: 30px;
+                }
+                .icon-readed {
+                    bottom: 0;
+                    left: auto;
+                    right: 0;
+                }
+            }
+        }
+    }
+}

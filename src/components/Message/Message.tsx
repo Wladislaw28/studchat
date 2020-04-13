@@ -21,7 +21,7 @@ const Message = ({ avatar, user, text, date, isMe, isReaded, attachments, isTypi
         <div className="message__content">
             {(isMe && isReaded) && <IconReaded isMe={isMe} isReaded={isReaded} />}
             <div className="message__avatar">
-                <img src={avatar} />
+                <img src={avatar} alt={`${avatar}- users avatar`} />
             </div>
             <div className="message__info">
                 {(text || isTyping) && <div className="message__bubble">

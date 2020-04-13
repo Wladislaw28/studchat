@@ -1,25 +1,61 @@
 import React from 'react';
 // import { Message } from '../../components';
-import { DialogItem } from '../../components';
+import { Dialogs } from '../../components';
 
 import './Home.scss';
 
 const Home = () => (
     <section className='home'>
-        <div className="dialogs">
-            <DialogItem user={{
-                fullName: 'Arrarat Muhamed',
-                isOnline: true
-            }} unreaded={3} />
-            <DialogItem user={{
-                fullName: 'Valdis Miha',
-                isOnline: false
-            }} unreaded={100} />
-            <DialogItem user={{
-                fullName: 'Pidoras Pidorski',
-                isOnline: true
-            }} />
-        </div>
+        <Dialogs
+            currentId={0}
+            items={[
+                {
+                    _id: Math.random(),
+                    text: 'Salam Bro',
+                    isReaded: false,
+                    created_at: new Date('Mon Apr 9 2020 23:25:48 GMT+0300'),
+                    user: {
+                        _id: 1,
+                        fullName: 'Pidor Pidoraski',
+                        avatar: 'https://sun9-55.userapi.com/c850428/v850428459/8d1f9/9cZ1YRjKx3Y.jpg?ava=1',
+                        isOnline: true
+                    }
+                },
+                {
+                    _id: Math.random(),
+                    text: 'Hello. What are doing?',
+                    isReaded: true,
+                    created_at: new Date('Mon Apr 13 2020 13:50:48 GMT+0300'),
+                    user: {
+                        _id: 1,
+                        fullName: 'Angus Iang',
+                        avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/AngusYoung.JPG/1200px-AngusYoung.JPG'
+                    }
+                },
+                {
+                    _id: Math.random(),
+                    text: 'Нуу ты и петушара!!!!!',
+                    isReaded: false,
+                    created_at: new Date('Mon Apr 11 2020 19:10:48 GMT+0300'),
+                    user: {
+                        _id: 1,
+                        fullName: 'Pink',
+                        avatar: 'https://comments.ua/img/publications/pcftmZ1kvx5fwXQ2tV065mREIng_oG-X.jpg',
+                        isOnline: true
+                    }
+                },
+                {
+                    _id: Math.random(),
+                    text: 'dasdfdgsfgrsdgsgs',
+                    isReaded: false,
+                    created_at: new Date('Mon Apr 10 2018 19:10:48 GMT+0300'),
+                    user: {
+                        _id: 1,
+                        fullName: 'Muhamed',
+                        avatar: null
+                    }
+                }
+            ]} />
 
         {/* <Message
             avatar='https://sun9-55.userapi.com/c850428/v850428459/8d1f9/9cZ1YRjKx3Y.jpg?ava=1'
