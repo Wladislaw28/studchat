@@ -1,6 +1,5 @@
 import React from 'react';
-// import { Message } from '../../components';
-import { Dialogs } from '../../components';
+import { Dialogs, Message } from '../../components';
 
 import './Home.scss';
 
@@ -42,7 +41,8 @@ const Home = () => (
                         fullName: 'Pink',
                         avatar: 'https://comments.ua/img/publications/pcftmZ1kvx5fwXQ2tV065mREIng_oG-X.jpg',
                         isOnline: true
-                    }
+                    },
+                    unreaded: 5
                 },
                 {
                     _id: Math.random(),
@@ -57,6 +57,11 @@ const Home = () => (
                 }
             ]} />
 
+
+        <Message
+            avatar='https://sun9-55.userapi.com/c850428/v850428459/8d1f9/9cZ1YRjKx3Y.jpg?ava=1'
+            date='Tue Nov 22 2019 13:00:50 GMT+0300'
+            audio="https://notificationsounds.com/soundfiles/069059b7ef840f0c74a814ec9237b6ec/file-de_vuvuzela-power-down.mp3" />
         {/* <Message
             avatar='https://sun9-55.userapi.com/c850428/v850428459/8d1f9/9cZ1YRjKx3Y.jpg?ava=1'
             text='Calam,Brut! How are you ?'
