@@ -26,9 +26,9 @@ const Home = () => (
                     isReaded: true,
                     created_at: new Date('Mon Apr 13 2020 13:50:48 GMT+0300'),
                     user: {
-                        _id: 1,
+                        _id: 'd050983f7d7797a70e5806b6f562e798',
                         fullName: 'Angus Iang',
-                        avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/AngusYoung.JPG/1200px-AngusYoung.JPG'
+                        avatar: null
                     }
                 },
                 {
@@ -45,12 +45,12 @@ const Home = () => (
                     unreaded: 5
                 },
                 {
-                    _id: Math.random(),
+                    _id: '81dc9bdb52d04dc20036dbd8313ed055',
                     text: 'dasdfdgsfgrsdgsgs',
                     isReaded: false,
                     created_at: new Date('Mon Apr 10 2018 19:10:48 GMT+0300'),
                     user: {
-                        _id: 1,
+                        _id: '81dc9bdb52d04dc20036dbd8313ed055',
                         fullName: 'Muhamed',
                         avatar: null
                     }

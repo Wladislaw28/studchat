@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconReaded } from '../../components';
+import { IconReaded, Avatar } from '../../components';
 import classNames from 'classnames';
 import format from 'date-fns/format';
 import isToday from 'date-fns/isToday';
@@ -25,7 +25,7 @@ const getMessageTime = (created_at: Date) => {
 const DialogItem = ({ user, message, unreaded, isMe, isReaded }: IDialogItemProps) => (
     <div className={classNames("dialogs__item", { 'dialogs__item--online': user.isOnline })}>
         <div className="dialogs__item-avatar">
-            {user.avatar && <img src={user.avatar} alt={`${user.fullName} avatar`} />}
+            <Avatar user={user} />
         </div>
         <div className="dialogs__item-info">
             <div className="dialogs__item-info-top">
