@@ -2,8 +2,13 @@ import jwt from 'jsonwebtoken';
 import { reduce } from 'lodash';
 import { IUser } from '../models/User';
 
-export default (user: any) => {
-    let token = jwt.sign(
+interface ILoginDataProps {
+    email: string;
+    password: string;
+}
+
+export default (user: ILoginDataProps): string => {
+    let token: string = jwt.sign(
         {
             data: reduce(user, (result: any, value, key) => {
                 if (key !== 'password') {
@@ -18,4 +23,5 @@ export default (user: any) => {
             algorithm: 'HS256'
         }
     )
+    return token;
 }
