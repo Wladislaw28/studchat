@@ -1,8 +1,15 @@
 import express, { Request, Response } from 'express';
 import { MessageModel } from '../models';
 import { IMessage } from '../models/Message';
+import socket from 'socket.io';
 
 class MessageController {
+    io: socket.Server;
+
+    constructor(io: socket.Server) {
+        this.io = io;
+    }
+
     index(req: Request, res: Response) {
         const dialogId: any = req.query.dialog;
         MessageModel.find({ dialog: dialogId })
@@ -17,11 +24,10 @@ class MessageController {
             });
     }
 
-    create(req: Request, res: Response) {
-        const userId = '5eac9744f17e262e881a1eac';
+    create(req: any, res: Response) {
         const postData = {
             text: req.body.text,
-            user: userId,
+            user: req.user._id,
             dialog: req.body.dialog_id
         }
         const message: IMessage = new MessageModel(postData);

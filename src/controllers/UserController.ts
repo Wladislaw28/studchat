@@ -1,4 +1,5 @@
 import express, { Response, Request } from 'express';
+import socket from 'socket.io';
 import bcrypt from 'bcrypt';
 import { validationResult, ValidationError, Result } from 'express-validator';
 
@@ -7,8 +8,13 @@ import { IUser } from '../models/User';
 import { createJWTToken } from '../utils';
 
 class UserController {
+    io: socket.Server;
 
-    login(req: Request, res: Response) {
+    constructor(io: socket.Server) {
+        this.io = io;
+    }
+
+    login = (req: Request, res: Response) => {
         const postData = {
             email: req.body.email,
             password: req.body.password
@@ -19,7 +25,6 @@ class UserController {
                 errors: errors.array()
             });
         }
-
         UserModel.findOne({ email: postData.email }, (err, user: any) => {
             if (err) {
                 return res.status(404).json({
@@ -39,9 +44,9 @@ class UserController {
                 })
             }
         })
-    }
+    };
 
-    show(req: Request, res: Response) {
+    show = (req: Request, res: Response) => {
         const id: string = req.params.id;
         UserModel.findById(id, (err, user) => {
             if (err) {
@@ -51,9 +56,21 @@ class UserController {
             }
             res.json(user);
         });
-    }
+    };
 
-    async create(req: Request, res: Response) {
+    getMe = (req: any, res: Response) => {
+        const id: string = req.user._id;
+        UserModel.findById(id, (err, user) => {
+            if (err) {
+                return res.status(404).json({
+                    message: 'Not found user'
+                })
+            }
+            res.json(user);
+        });
+    }; 
+
+    create = async (req: Request, res: Response) => {
         const postData = {
             email: req.body.email,
             fullName: req.body.fullName,
@@ -68,9 +85,9 @@ class UserController {
             .catch((reason) => {
                 res.json(reason);
             });
-    }
+    };
 
-    delete(req: Request, res: Response) {
+    delete = (req: Request, res: Response) => {
         const id: string = req.params.id;
         UserModel.findOneAndRemove({ _id: id })
             .then(user => {
@@ -85,7 +102,7 @@ class UserController {
                     message: 'Not found user'
                 })
             });
-    }
+    };
 }
 
 export default UserController;
