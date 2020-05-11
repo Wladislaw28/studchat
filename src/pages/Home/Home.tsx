@@ -1,67 +1,98 @@
 import React from 'react';
+import { Icon, Input } from 'antd';
+
 import { Dialogs, Message } from '../../components';
 
 import './Home.scss';
 
 const Home = () => (
-    <section className='home'>
-        <Dialogs
-            currentId={0}
-            items={[
-                {
-                    _id: Math.random(),
-                    text: 'Salam Bro',
-                    isReaded: false,
-                    created_at: new Date('Mon Apr 9 2020 23:25:48 GMT+0300'),
-                    user: {
-                        _id: 1,
-                        fullName: 'Pidor Pidoraski',
-                        avatar: 'https://sun9-55.userapi.com/c850428/v850428459/8d1f9/9cZ1YRjKx3Y.jpg?ava=1',
-                        isOnline: true
-                    }
-                },
-                {
-                    _id: Math.random(),
-                    text: 'Hello. What are doing?',
-                    isReaded: true,
-                    created_at: new Date('Mon Apr 13 2020 13:50:48 GMT+0300'),
-                    user: {
-                        _id: 'd050983f7d7797a70e5806b6f562e798',
-                        fullName: 'Angus Iang',
-                        avatar: null
-                    }
-                },
-                {
-                    _id: Math.random(),
-                    text: 'Нуу ты и петушара!!!!!',
-                    isReaded: false,
-                    created_at: new Date('Mon Apr 11 2020 19:10:48 GMT+0300'),
-                    user: {
-                        _id: 1,
-                        fullName: 'Pink',
-                        avatar: 'https://comments.ua/img/publications/pcftmZ1kvx5fwXQ2tV065mREIng_oG-X.jpg',
-                        isOnline: true
-                    },
-                    unreaded: 5
-                },
-                {
-                    _id: '81dc9bdb52d04dc20036dbd8313ed055',
-                    text: 'dasdfdgsfgrsdgsgs',
-                    isReaded: false,
-                    created_at: new Date('Mon Apr 10 2018 19:10:48 GMT+0300'),
-                    user: {
-                        _id: '81dc9bdb52d04dc20036dbd8313ed055',
-                        fullName: 'Muhamed',
-                        avatar: null
-                    }
-                }
-            ]} />
+    <section className='home' style={{ height:"100%"}}>
+        <div className="chat">
+            <div className="chat__sidebar">
+                <div className="chat__sidebar-header">
+                    <div className="chat__sidebar-header-iconList">
+                        <Icon type="team" />
+                        <span>Список диалогов</span>
+                    </div>
+                    <Icon type="form"></Icon>
+                </div>
+                <div className="chat__sidebar-search">
+                    <Input.Search placeholder="Поиск среди контактов" onSearch={value => console.log('search')} />
+                </div>
+                <div className="chat__sidebar-dialogs">
+                    <Dialogs
+                        currentId={0}
+                        items={[
+                            {
+                                _id: Math.random(),
+                                text: 'Salam Bro',
+                                isReaded: false,
+                                created_at: new Date('Mon Apr 9 2020 23:25:48 GMT+0300'),
+                                user: {
+                                    _id: 1,
+                                    fullName: 'Pidor Pidoraski',
+                                    avatar: 'https://sun9-55.userapi.com/c850428/v850428459/8d1f9/9cZ1YRjKx3Y.jpg?ava=1',
+                                    isOnline: true
+                                }
+                            },
+                            {
+                                _id: Math.random(),
+                                text: 'Hello. What are doing?',
+                                isReaded: true,
+                                created_at: new Date('Mon Apr 13 2020 13:50:48 GMT+0300'),
+                                user: {
+                                    _id: 'd050983f7d7797a70e5806b6f562e798',
+                                    fullName: 'Angus Iang',
+                                    avatar: null
+                                }
+                            },
+                            {
+                                _id: Math.random(),
+                                text: 'Нуу ты и петушара!!!!!',
+                                isReaded: false,
+                                created_at: new Date('Mon Apr 11 2020 19:10:48 GMT+0300'),
+                                user: {
+                                    _id: 1,
+                                    fullName: 'Pink',
+                                    avatar: 'https://comments.ua/img/publications/pcftmZ1kvx5fwXQ2tV065mREIng_oG-X.jpg',
+                                    isOnline: true
+                                },
+                                unreaded: 5
+                            },
+                            {
+                                _id: '81dc9bdb52d04dc20036dbd8313ed055',
+                                text: 'dasdfdgsfgrsdgsgs',
+                                isReaded: false,
+                                created_at: new Date('Mon Apr 10 2018 19:10:48 GMT+0300'),
+                                user: {
+                                    _id: '81dc9bdb52d04dc20036dbd8313ed055',
+                                    fullName: 'Muhamed',
+                                    avatar: null
+                                }
+                            }
+                        ]} />
+                </div>
+            </div>
+            <div className="chat__dialog">
+                <div className="chat__dialog-header">
+                    <div className="chat__dialog-header-center">
+                        <h1 className="chat__dialog-header-username">Владислав Михасёв</h1>
+                        <div className="chat__dialog-header-status">
+                            <span className="status status--online">онлайн</span>
+                        </div>
+                    </div>
+                    <div className="chat__dialog-header-action">
+                        <Icon type="ellipsis" />
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-        <Message
+        {/* <Message
             avatar='https://sun9-55.userapi.com/c850428/v850428459/8d1f9/9cZ1YRjKx3Y.jpg?ava=1'
             date='Tue Nov 22 2019 13:00:50 GMT+0300'
-            audio="https://notificationsounds.com/soundfiles/069059b7ef840f0c74a814ec9237b6ec/file-de_vuvuzela-power-down.mp3" />
+            audio="https://notificationsounds.com/soundfiles/069059b7ef840f0c74a814ec9237b6ec/file-de_vuvuzela-power-down.mp3" /> */}
         {/* <Message
             avatar='https://sun9-55.userapi.com/c850428/v850428459/8d1f9/9cZ1YRjKx3Y.jpg?ava=1'
             text='Calam,Brut! How are you ?'

@@ -12,7 +12,7 @@ export const generateAvatarFromHash = (hash: string): IColorsForAvatar => {
             : char.charCodeAt(0) < 0 ? 0
                 : char.charCodeAt(0));
     return {
-        color: tinycolor({ r, g, b }).toHexString(),
+        color: tinycolor({ r, g, b }).lighten(15).toHexString(),
         colorLighter: tinycolor({ r, g, b }).lighten(40).toHexString()
     };
 };
