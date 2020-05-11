@@ -10,7 +10,7 @@ class DialogController {
         this.io = io;
     }
 
-    index(req: any, res: Response) {
+    index = (req: any, res: Response) => {
         DialogModel.find({ author: req.user._id })
             .populate(["author", "partners"])
             .exec((err, dialogs) => {
@@ -23,7 +23,7 @@ class DialogController {
             });
     }
 
-    create(req: Request, res: Response) {
+    create = (req: Request, res: Response) => {
         const postData = {
             author: req.body.author,
             partners: req.body.partners
@@ -50,7 +50,7 @@ class DialogController {
             });
     }
 
-    delete(req: Request, res: Response) {
+    delete = (req: Request, res: Response) => {
         const id: any = req.params.id;
         DialogModel.findOneAndRemove({ _id: id })
             .then(dialog => {

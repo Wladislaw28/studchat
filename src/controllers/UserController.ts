@@ -26,7 +26,7 @@ class UserController {
             });
         }
         UserModel.findOne({ email: postData.email }, (err, user: any) => {
-            if (err) {
+            if (err || !user) {
                 return res.status(404).json({
                     message: 'Not found user'
                 })
@@ -68,7 +68,7 @@ class UserController {
             }
             res.json(user);
         });
-    }; 
+    };
 
     create = async (req: Request, res: Response) => {
         const postData = {

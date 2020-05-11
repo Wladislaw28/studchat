@@ -15,8 +15,10 @@
 
         window.socket = socket;
 
-        socket.on('111', (msg) => {
-            console.log('message: ' + msg);
+        socket.on("SERVER:NEW_MESSAGE", (msg) => {
+            if(window.user !== msg.user) {
+                console.log(msg);
+            }
         });
 
     </script>
