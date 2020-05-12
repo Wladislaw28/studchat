@@ -1,5 +1,15 @@
 @import "~styles/variables";
 .dialogs {
+    &__search {
+        padding: 2px 20px 20px 20px;
+
+        .ant-input {
+            background-color: #f7f8f9;
+            border: 0;
+            height: 38px;
+            padding: 4px 11px 6px;
+        }
+    }
     &__item {
         display: flex;
         cursor: pointer;
@@ -26,7 +36,7 @@
                     position: absolute;
                     bottom: 0;
                     right: 0;
-                    content: '';
+                    content: "";
                     background-color: $green;
                     border-radius: 30px;
                     width: 13px;
@@ -44,6 +54,7 @@
             &-top {
                 display: flex;
                 flex-wrap: wrap;
+                justify-content: space-between;
                 h1 {
                     font-weight: 600;
                     font-size: 14px;
@@ -56,6 +67,7 @@
                     line-height: 14px;
                     color: #202020;
                     opacity: 0.4;
+                    margin-right:21px;
                 }
             }
             &-bottom {

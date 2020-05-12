@@ -1,43 +1,48 @@
-import React from 'react';
-import { IconReaded, Avatar } from '../../components';
-import classNames from 'classnames';
-import format from 'date-fns/format';
-import isToday from 'date-fns/isToday';
+import React from "react";
+import classNames from "classnames";
+import format from "date-fns/format";
+import isToday from "date-fns/isToday";
 
-import './DialogItem.scss';
+import { IconReaded, Avatar } from "../";
 
 interface IDialogItemProps {
-    user?: any;
-    message?: any;
-    unreaded?: number;
-    isMe: boolean;
-    isReaded: boolean;
+    user: any;
+    undread: any;
+    created_at: any;
+    text: any;
+    isMe: any;
 }
 
-const getMessageTime = (created_at: Date) => {
+const getMessageTime = (created_at: any) => {
     if (isToday(created_at)) {
-        return format(created_at, 'HH:mm');
+        return format(new Date(created_at), "HH:mm");
     } else {
-        return format(created_at, 'dd.MM.yyyy');
+        return format(new Date(created_at), "dd.MM.yyyy");
     }
-}
+};
 
-const DialogItem = ({ user, message, unreaded, isMe, isReaded }: IDialogItemProps) => (
-    <div className={classNames("dialogs__item", { 'dialogs__item--online': user.isOnline })}>
+const DialogItem = ({ user, undread, created_at, text, isMe }: IDialogItemProps) => (
+    <div
+        className={classNames("dialogs__item", {
+            "dialogs__item--online": user.isOnline
+        })}
+    >
         <div className="dialogs__item-avatar">
             <Avatar user={user} />
         </div>
         <div className="dialogs__item-info">
             <div className="dialogs__item-info-top">
-                <h1>{user.fullName}</h1>
-                {/* <Time dateProps={message.created_at} /> */}
-                <span className="time">{getMessageTime(message.created_at)}</span>
+                <b>{user.fullname}</b>
+                <span>{getMessageTime(created_at)}</span>
             </div>
             <div className="dialogs__item-info-bottom">
-                <p>{message.text}</p>
-                {!!unreaded
-                    ? <div className="dialogs__item-info-bottom-count">{unreaded}</div>
-                    : <IconReaded isMe={true} isReaded={isReaded} />}
+                <p>{text}</p>
+                {isMe && <IconReaded isMe={true} isReaded={false} />}
+                {undread > 0 && (
+                    <div className="dialogs__item-info-bottom-count">
+                        {undread > 9 ? "+9" : undread}
+                    </div>
+                )}
             </div>
         </div>
     </div>

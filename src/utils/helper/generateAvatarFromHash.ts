@@ -1,18 +1,29 @@
-import tinycolor from 'tinycolor2';
+import tinycolor from "tinycolor2";
 
-export interface IColorsForAvatar {
-    color: string;
-    colorLighter: string;
-}
+const getCorrectIndex = (number: number) => {
+    if (number > 255) {
+        return 255;
+    }
+    if (number < 0) {
+        return 0;
+    }
+    return number > 255 ? 255 : number < 0 ? 0 : number;
+};
 
-export const generateAvatarFromHash = (hash: string): IColorsForAvatar => {
-    const [r, g, b]: Array<number> = hash.substring(0, 3)
-        .split('')
-        .map(char => char.charCodeAt(0) > 255 ? 255
-            : char.charCodeAt(0) < 0 ? 0
-                : char.charCodeAt(0));
+export default (hash: any) => {
+    const [r, g, b] = hash
+        .substr(0, 3)
+        .split("")
+        .map((char: any) => getCorrectIndex(char.charCodeAt(0)));
+
     return {
-        color: tinycolor({ r, g, b }).lighten(15).toHexString(),
-        colorLighter: tinycolor({ r, g, b }).lighten(40).toHexString()
+        color: tinycolor({ r, g, b })
+            .lighten(10)
+            .saturate(10)
+            .toHexString(),
+        colorLighten: tinycolor({ r, g, b })
+            .lighten(30)
+            .saturate(30)
+            .toHexString()
     };
 };

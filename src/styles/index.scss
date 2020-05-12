@@ -11,10 +11,24 @@ html,
     font-size: 14px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
         "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    background-color: #e9e9e9;
-
+    background-color: #f4f7fd;
 }
 
 * {
     outline: none;
+}
+
+.ant-btn-circle {
+    border: 0;
+    box-shadow: none;
+    color: #202020 !important;
+    opacity: 0.4;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &:after {
+        display: none;
+    }
 }
