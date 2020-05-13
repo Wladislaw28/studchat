@@ -5,8 +5,10 @@
     "dependencies": {
         "@babel/core": "7.6.0",
         "@fluentui/react": "^7.111.1",
+        "@navjobs/upload": "^3.2.0",
         "@svgr/webpack": "4.3.2",
         "@types/classnames": "^2.2.9",
+        "@types/emoji-mart": "^3.0.0",
         "@types/jest": "24.0.23",
         "@types/lodash": "^4.14.149",
         "@types/node": "12.12.8",
@@ -32,6 +34,7 @@
         "date-fns": "^2.8.0",
         "dotenv": "6.2.0",
         "dotenv-expand": "5.1.0",
+        "emoji-mart": "^3.0.0",
         "eslint": "^6.1.0",
         "eslint-config-react-app": "^5.0.2",
         "eslint-loader": "3.0.2",

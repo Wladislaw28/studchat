@@ -3,6 +3,8 @@ import { Empty } from "antd";
 
 import Message from "../Message/Message";
 
+import './Messages.scss';
+
 const Messages = ({ items }: any) => {
     return !items ? (
         <div>

@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
-import { Time } from '../../components';
-import { IconReaded } from '../../components';
+import { Time, Avatar, IconReaded } from '../../components';
+
+import { Emoji } from "emoji-mart";
+import 'emoji-mart/css/emoji-mart.css'
 
 import { convertCurrentTime } from '../../utils/helper/convertCurrentTime';
 
@@ -117,11 +119,17 @@ const Message = ({ avatar, user, text, date, isMe, isReaded, attachments, audio,
             <div className="message__content">
                 {(isMe && isReaded) && <IconReaded isMe={isMe} isReaded={isReaded} />}
                 <div className="message__avatar">
+                    {/* <Avatar user={user} /> */}
                     <img src={avatar} alt={`${avatar}- users avatar`} />
                 </div>
                 <div className="message__info">
                     {(text || audio || isTyping) &&
                         <div className="message__bubble">
+                            {text && (
+                                <p className="message__text">
+                                    <Emoji emoji=":santa::skin-tone-3:" set="apple" size={16} />
+                                </p>
+                            )}
                             {text && <p className="message__text">{text}</p>}
                             {isTyping &&
                                 <div className="message__is-typing">
