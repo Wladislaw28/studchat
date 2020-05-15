@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { Dialogs as BaseDialogs } from "../components";
 import { dialogsActions } from '../redux/actions';
 
-const Dialogs = ({ setCurrentDialog, fetchDialogs, items, userId }: any) => {
+const Dialogs = ({ fetchMessages, items }: any) => {
     const [inputValue, setValue] = useState("");
     const [filtred, setFiltredItems] = useState(Array.from(items));
 
     useEffect(() => {
         if (!items.length) {
-            fetchDialogs();
+            fetchMessages();
         } else {
             setFiltredItems(items);
         }

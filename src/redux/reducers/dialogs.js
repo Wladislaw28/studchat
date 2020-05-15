@@ -1,5 +1,6 @@
 const initialState = {
-    items: []
+    items: [],
+    currentDialog: null
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -7,6 +8,11 @@ export default (state = initialState, { type, payload }) => {
         case "DIALOGS:SET_ITEMS":
             return {
                 items: payload
+            }
+        case "DIALOGS:SET_CURRENT_DIALOG":
+            return {
+                ...state,
+                currentDialog: payload
             }
         default:
             return state;

@@ -8,8 +8,8 @@ import store from './redux/store';
 import '../src/styles/index.scss';
 
 ReactDOM.render(
-    <Router>
-        <Provider store={store}>
+    <Provider store={store}>
+        <Router>
             <App />
-        </Provider>
-    </Router>, document.getElementById('root'));
+        </Router>
+    </Provider>, document.getElementById('root'));

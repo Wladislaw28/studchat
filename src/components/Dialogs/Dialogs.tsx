@@ -7,20 +7,12 @@ import './Dialogs.scss';
 
 interface IDialogsProps {
     items?: Array<any>;
-    userId: number;
+    userId?: any;
     onSearch?: any;
     inputValue?: any;
 }
 
-// const Dialogs = ({ items, currentId }: IDialogsProps): JSX.Element => (
-//     <div className="dialogs">
-//         {items && orderBy(items, dialog => +dialog.created_at, ['desc']).map((item) => {
-//             return <DialogItem {...item} key={item._id} message={item} isMe={item.user._id === currentId} />;
-//         })}
-//     </div>
-// );
-
-const Dialogs = ({ items, userId, onSearch, inputValue }: IDialogsProps): JSX.Element => (
+const Dialogs = ({ items, userId, onSearch, inputValue, onSelectDialog }: any): JSX.Element => (
     <div className="dialogs">
         <div className="dialogs__search">
             <Input.Search
@@ -31,7 +23,7 @@ const Dialogs = ({ items, userId, onSearch, inputValue }: IDialogsProps): JSX.El
         </div>
         {items && items.length ? (
             orderBy(items, ["created_at"], ["desc"]).map(item => (
-                <DialogItem key={item._id} isMe={item.user._id === userId} {...item} />
+                <DialogItem onSelect={onSelectDialog} key={item._id} isMe={item.user._id === userId} {...item} />
             ))
         ) : (
                 <Empty

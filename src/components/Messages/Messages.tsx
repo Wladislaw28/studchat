@@ -6,7 +6,7 @@ import Message from "../Message/Message";
 import './Messages.scss';
 
 const Messages = ({ items }: any) => {
-    return !items ? (
+    return items ? (
         <div>
             <Message
                 avatar="https://pp.userapi.com/c846017/v846017841/18957c/1iVH9FKXi4E.jpg?ava=1"

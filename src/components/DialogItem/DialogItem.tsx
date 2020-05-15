@@ -21,11 +21,13 @@ const getMessageTime = (created_at: any) => {
     }
 };
 
-const DialogItem = ({ user, undread, created_at, text, isMe }: IDialogItemProps) => (
+const DialogItem = ({ _id, user, undread, created_at, text, isMe, onSelect }: any) => (
     <div
         className={classNames("dialogs__item", {
             "dialogs__item--online": user.isOnline
         })}
+        // @ts-ignore
+        onClick={onSelect.bind(this,_id)}
     >
         <div className="dialogs__item-avatar">
             <Avatar user={user} />
