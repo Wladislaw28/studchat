@@ -1,8 +1,8 @@
 import React from 'react';
 import { Icon, Button } from 'antd';
 
-import { Messages, Status, ChatInput } from '../../components';
-import { Dialogs } from "../../containers";
+import { Status, ChatInput } from '../../components';
+import { Dialogs, Messages } from "../../containers";
 
 import './Home.scss';
 
@@ -19,7 +19,7 @@ const Home = () => (
                 </div>
 
                 <div className="chat__sidebar-dialogs">
-                    <Dialogs  />
+                    <Dialogs />
                 </div>
             </div>
             <div className="chat__dialog">

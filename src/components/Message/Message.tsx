@@ -119,8 +119,8 @@ const Message = ({ avatar, user, text, date, isMe, isReaded, attachments, audio,
             <div className="message__content">
                 {(isMe && isReaded) && <IconReaded isMe={isMe} isReaded={isReaded} />}
                 <div className="message__avatar">
-                    {/* <Avatar user={user} /> */}
-                    <img src={avatar} alt={`${avatar}- users avatar`} />
+                    <Avatar user={user} />
+                    {/* <img src={avatar} alt={`${avatar}- users avatar`} /> */}
                 </div>
                 <div className="message__info">
                     {(text || audio || isTyping) &&

@@ -1,5 +1,13 @@
 @import "~styles/variables";
 .dialogs {
+    &__dialogsItem {
+        &--loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 100px;
+        }
+    }
     &__search {
         padding: 2px 20px 20px 20px;
 

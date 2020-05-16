@@ -1,5 +1,5 @@
 import { axios } from '../../core/index';
 
 export default {
-    getAllByDialogId: () => axios.get("/messages")
+    getAllByDialogId: id => axios.get("/messages?dialog=" + id)
 }

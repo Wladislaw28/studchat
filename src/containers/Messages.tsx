@@ -1,40 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from 'react-redux';
 
-import { Dialogs as BaseDialogs } from "../components";
-import { dialogsActions } from '../redux/actions';
+import { Messages as BaseMessages } from "../components";
+import { messagesActions } from '../redux/actions';
 
-const Dialogs = ({ fetchMessages, items }: any) => {
-    const [inputValue, setValue] = useState("");
-    const [filtred, setFiltredItems] = useState(Array.from(items));
-
+const Messages = ({ fetchMessages, currentDialogId, items, isLoading }: any) => {
     useEffect(() => {
-        if (!items.length) {
-            fetchMessages();
-        } else {
-            setFiltredItems(items);
+        if (currentDialogId) {
+            fetchMessages(currentDialogId);
         }
-    }, [items]);
-
-    const onChangeInput = (value: any) => {
-        setFiltredItems(
-            items.filter(
-                (dialog: any) =>
-                    dialog.user.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0
-            )
-        );
-        setValue(value);
-    };
+    }, [currentDialogId]);
 
     return (
-        <BaseDialogs
-            userId={userId}
-            items={filtred}
-            onSearch={onChangeInput}
-            inputValue={inputValue}
-            onSelectDialog={setCurrentDialog}
+        <BaseMessages
+            isLoading={isLoading}
+            items={items}
         />
     );
 };
 
-export default connect(({ dialogs }: any) => dialogs, dialogsActions)(Dialogs);
+export default connect(({ dialogs, messages }: any) => ({
+    currentDialogId: dialogs.currentDialogId,
+    items: messages.items,
+    isLoading: messages.isLoading
+}), messagesActions)(Messages);

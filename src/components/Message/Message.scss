@@ -10,12 +10,14 @@
     &__avatar {
         display: flex;
         flex-direction: column-reverse;
-        img {
+        .avatar {
             border-radius: 50px;
             width: 33px;
             height: 33px;
             margin-right: 13px;
             margin-bottom: 5px;
+            font-style: 14px;
+            line-height: 22px;
         }
     }
     &__bubble {
