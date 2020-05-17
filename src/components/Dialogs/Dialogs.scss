@@ -24,6 +24,11 @@
         margin-bottom: 20px;
         $item: &;
 
+        &--selected {
+            background-color: #6073ff !important;
+            color: white;
+        }
+
         &-avatar {
             position: relative;
             flex: 0 0 40px;

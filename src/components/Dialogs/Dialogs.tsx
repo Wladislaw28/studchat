@@ -2,7 +2,7 @@ import React from 'react';
 import { DialogItem } from '../../components';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
-import { Input, Empty, Spin, Alert } from "antd";
+import { Input, Empty, Spin } from "antd";
 
 import './Dialogs.scss';
 
@@ -13,7 +13,7 @@ interface IDialogsProps {
     inputValue?: any;
 }
 
-const Dialogs = ({ isLoading, items, userId, onSearch, inputValue, onSelectDialog }: any): JSX.Element => (
+const Dialogs = ({ isLoading, items, userId, onSearch, inputValue, currentDialogId, onSelectDialog }: any): JSX.Element => (
     <div className='dialogs'>
         <div className="dialogs__search">
             <Input.Search
@@ -25,7 +25,8 @@ const Dialogs = ({ isLoading, items, userId, onSearch, inputValue, onSelectDialo
         <div className={classNames('dialogs__dialogsItem', { 'dialogs__dialogsItem--loading': isLoading })}>
             {(items && items.length) && !isLoading ? (
                 orderBy(items, ["created_at"], ["desc"]).map(item => (
-                    <DialogItem onSelect={onSelectDialog} key={item._id} isMe={item.user._id === userId} {...item} />
+                    <DialogItem onSelect={onSelectDialog} key={item._id}
+                        isMe={item.user._id === userId} currentDialogId={currentDialogId} {...item} />
                 ))
             ) : isLoading ?
                     <Spin size="large" tip="Загрузка..." />

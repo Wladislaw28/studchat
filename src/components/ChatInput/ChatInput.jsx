@@ -40,7 +40,7 @@ const ChatInput = (props) => {
             className: "chat-input__actions-upload-btn"
           }}
           uploadProps={{
-            accept: ".jpg,.jpeg,.png,.gif,.bmp",
+            accept: ".jpg,.jpeg,.png,.gif,.bmp,.doc,.docx",
             multiple: "multiple"
           }}
         >
