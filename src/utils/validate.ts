@@ -22,7 +22,7 @@ export const validateForm = ({ isAuth, values, errors }: IValidateForm): void =>
         password: (value: any) => {
             if (!value) {
                 errors.password = 'Введите пароль';
-            } else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i.test(value)) {
+            } else if (!isAuth && !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i.test(value)) {
                 errors.password = isAuth ? 'Неверный пароль' : 'Пароль должен содержать минимум восемь символов, как минимум одна буква и одна цифра';
             }
         },

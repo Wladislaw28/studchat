@@ -6,7 +6,7 @@ import { validateField } from '../../../utils/helper/validateField';
 import { FormikProps } from 'formik';
 
 export interface LoginFormValues {
-    login: string;
+    email: string;
     password: string;
 }
 
@@ -18,7 +18,8 @@ export const LoginForm = (props: FormikProps<LoginFormValues>) => {
         handleChange,
         handleBlur,
         handleSubmit,
-        isValid
+        isValid,
+        isSubmitting
     } = props;
     return (
         <div>
@@ -28,14 +29,14 @@ export const LoginForm = (props: FormikProps<LoginFormValues>) => {
             </div>
             <WhiteBlock>
                 <Form className="login-form">
-                    <Form.Item validateStatus={validateField("login", touched, errors)}
-                        help={!touched.login ? '' : errors.login} hasFeedback>
+                    <Form.Item validateStatus={validateField("email", touched, errors)}
+                        help={!touched.email ? '' : errors.email} hasFeedback>
                         <Input
-                            id="login"
+                            id="email"
                             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            placeholder="Логин"
+                            placeholder="Email"
                             size="large"
-                            value={values.login}
+                            value={values.email}
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
@@ -53,9 +54,9 @@ export const LoginForm = (props: FormikProps<LoginFormValues>) => {
                             onBlur={handleBlur}
                         />
                     </Form.Item>
-                    {!isValid && 'Error'}
+                    {isSubmitting && !isValid && 'Ошибка'}
                     <Form.Item>
-                        <Button type="primary" size='large' onClick={handleSubmit}>
+                        <Button disabled={isSubmitting} type="primary" size='large' onClick={handleSubmit}>
                             Войти в аккаунт
                         </Button>
                     </Form.Item>
