@@ -8,13 +8,13 @@ const Dialogs = ({ setCurrentDialogId, currentDialogId, fetchDialogs, items, use
     const [inputValue, setValue] = useState("");
     const [filtred, setFiltredItems] = useState(Array.from(items));
 
-    useEffect(() => {
-        if (!items.length) {
-            fetchDialogs();
-        } else {
-            setFiltredItems(items);
-        }
-    }, [items]);
+    // useEffect(() => {
+    //     if (!items.length) {
+    //         fetchDialogs();
+    //     } else {
+    //         setFiltredItems(items);
+    //     }
+    // }, [items]);
 
     const onChangeInput = (value: any) => {
         setFiltredItems(

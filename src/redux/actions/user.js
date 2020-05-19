@@ -7,7 +7,9 @@ const actions = {
         payload: data
     }),
     fetchUserData: () => dispatch => {
-        dispatch(actions.setUserData(data));
+        userApi.getMe().then(({ data }) => {
+            dispatch(actions.setUserData(data));
+        })
     },
     fetchUserLogin: postData => dispatch => {
         return userApi.login(postData).then(({ data }) => {
@@ -23,9 +25,11 @@ const actions = {
                     type: 'success',
                     title: "Успешный вход"
                 });
-                dispatch(actions.setUserData(data));
+                window.axios.defaults.headers.common["token"] = token;
+                window.localStorage["token"] = token;
+                dispatch(actions.fetchUserData());
             }
-            // window.token = token;
+            return data;
         })
     }
 };

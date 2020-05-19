@@ -1,7 +1,5 @@
 import { withFormik, FormikErrors } from 'formik';
 
-import { connect } from 'react-redux';
-
 import { LoginForm, LoginFormValues } from '../components/LoginForm';
 import { validateForm } from '../../../utils/validate';
 
@@ -20,9 +18,14 @@ const LoginFormContainer = withFormik<{}, LoginFormValues>({
         return errors;
     },
 
-    handleSubmit: (values: LoginFormValues, { setSubmitting }) => {
+    handleSubmit: (values: LoginFormValues, { setSubmitting, props }: any) => {
         store.dispatch(userActions.fetchUserLogin(values))
-            .then(() => {
+            .then(({ status }: any) => {
+                if (status === "success") {
+                    setTimeout(() => {
+                        props.history.push("/");
+                    }, 3000);
+                }
                 setSubmitting(false);
             })
     },

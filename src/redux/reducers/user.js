@@ -1,6 +1,7 @@
 const initialState = {
     data: null,
-    isAuth: false
+    isAuth: false,
+    token: window.localStorage.token
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -9,7 +10,8 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 data: payload,
-                isAuth: true
+                isAuth: true,
+                token: window.localStorage.token
             }
         default:
             return state;

@@ -26,7 +26,7 @@ const Dialogs = ({ isLoading, items, userId, onSearch, inputValue, currentDialog
             {(items && items.length) && !isLoading ? (
                 orderBy(items, ["created_at"], ["desc"]).map(item => (
                     <DialogItem onSelect={onSelectDialog} key={item._id}
-                        isMe={item.user._id === userId} currentDialogId={currentDialogId} {...item} />
+                        isMe={item.author._id === userId} currentDialogId={currentDialogId} {...item} />
                 ))
             ) : isLoading ?
                     <Spin size="large" tip="Загрузка..." />
