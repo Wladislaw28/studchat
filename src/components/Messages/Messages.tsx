@@ -8,7 +8,8 @@ import './Messages.scss';
 const Messages = ({ blockRef, isLoading, items }: any) => {
     return (<div ref={blockRef} className={classNames('messages', { 'messages--loading': isLoading })}>
         {isLoading
-            ? <Spin size="large" tip="Загрузка..." /> : items && !isLoading
+            ? <Spin size="large" tip="Загрузка..." /> 
+            : items && !isLoading
                 ? (items.length > 0
                     ? items.map((item: any) =>
                         (<Message key={item._id} {...item} />)

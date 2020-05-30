@@ -1,14 +1,14 @@
 import React from 'react';
-import { Form, Icon, Input } from 'antd';
-import { Button, WhiteBlock } from '../../../components';
+import { Form, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import { FormikProps } from 'formik';
-import { validateField } from '../../../utils/helper/validateField';
+
+import { Button, WhiteBlock, FormField } from '../../../components';
 
 const success = false;
 
 export interface RegisterFormValues {
-    login: string;
+    fullName: string;
     password: string;
     email: string;
 }
@@ -21,7 +21,8 @@ export const RegisterForm = (props: FormikProps<RegisterFormValues>) => {
         handleChange,
         handleBlur,
         handleSubmit,
-        isValid
+        isValid,
+        isSubmitting
     } = props;
     return (
         <div>
@@ -32,55 +33,21 @@ export const RegisterForm = (props: FormikProps<RegisterFormValues>) => {
             <WhiteBlock>
                 {!success ?
                     <Form onSubmit={handleSubmit} className="login-form">
-                        <Form.Item validateStatus={validateField("email", touched, errors)}
-                            help={!touched.email ? '' : errors.email} hasFeedback>
-                            <Input
-                                id="email"
-                                type="email"
-                                prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                placeholder="Email"
-                                size="large"
-                                value={values.email}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                        </Form.Item>
-                        <Form.Item validateStatus={validateField("login", touched, errors)}
-                            help={!touched.login ? '' : errors.login} hasFeedback>
-                            <Input
-                                id="login"
-                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                placeholder="Ваше имя"
-                                size="large"
-                                value={values.login}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                        </Form.Item>
-                        <Form.Item validateStatus={validateField("password", touched, errors)}
-                            help={!touched.password ? '' : errors.password} hasFeedback>
-                            <Input
-                                id="password"
-                                type="password"
-                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                size="large"
-                                placeholder="Пароль"
-                                value={values.password}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                        </Form.Item>
+                        <FormField name="email" placeholder="Email" touched={touched}
+                            errors={errors} icon="mail" handleChange={handleChange} handleBlur={handleBlur} values={values} />
+
+                        <FormField name="fullName" placeholder="Ваше имя" touched={touched}
+                            errors={errors} icon="user" handleChange={handleChange} handleBlur={handleBlur} values={values} />
+
+                        <FormField type="password" name="password" placeholder="Пароль" touched={touched}
+                            errors={errors} icon="lock" handleChange={handleChange} handleBlur={handleBlur} values={values} />
+
+                        <FormField type="password" name="password_2" placeholder="Повторите пароль" touched={touched}
+                            errors={errors} icon="lock" handleChange={handleChange} handleBlur={handleBlur} values={values} />
+
+                        {isSubmitting && !isValid && 'Ошибка'}
                         <Form.Item>
-                            <Input
-                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                type="password"
-                                placeholder="Повторите пароль"
-                                size="large"
-                            />
-                        </Form.Item>
-                        {!isValid && 'Error'}
-                        <Form.Item>
-                            <Button onClick={handleSubmit} type="primary" size='large'>
+                            <Button disabled={isSubmitting} type="primary" size='large' onClick={handleSubmit}>
                                 Зарегистироваться
                             </Button>
                         </Form.Item>

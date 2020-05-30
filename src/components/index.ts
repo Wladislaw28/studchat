@@ -14,3 +14,5 @@ export { default as Avatar } from './Avatar/Avatar';
 
 export { default as Status } from "./Status/Status";
 export { default as ChatInput } from "./ChatInput/ChatInput";
+
+export { default as FormField } from "./FormField/FormField";

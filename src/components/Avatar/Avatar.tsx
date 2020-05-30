@@ -9,12 +9,12 @@ const Avatar = ({ user }: any) => {
             <img
                 className="avatar"
                 src={user.avatar}
-                alt={`Avatar ${user.fullname}`}
+                alt={`Avatar ${user.fullName}`}
             />
         );
     } else {
         const { color, colorLighten } = generateAvatarFromHash(user._id);
-        const firstChar = user.fullname[0].toUpperCase();
+        const firstChar = user.fullName[0].toUpperCase();
         return (
             <div
                 style={{

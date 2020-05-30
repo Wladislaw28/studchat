@@ -2,11 +2,15 @@ import { withFormik, FormikErrors } from 'formik';
 import { RegisterForm, RegisterFormValues } from '../components/RegisterForm';
 import { validateForm } from '../../../utils/validate';
 
+import { userActions } from '../../../redux/actions';
+import store from '../../../redux/store';
+
 export default withFormik<{}, RegisterFormValues>({
     enableReinitialize: true,
     mapPropsToValues: () => ({
-        login: '',
+        fullName: '',
         password: '',
+        password_2: '',
         email: ''
     }),
     validate: (values: RegisterFormValues) => {
@@ -15,11 +19,19 @@ export default withFormik<{}, RegisterFormValues>({
         return errors;
     },
 
-    handleSubmit: (values: RegisterFormValues, { setSubmitting }) => {
-        setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-        }, 1000);
+    handleSubmit: (values: any, { setSubmitting, props }: any) => {
+        store.dispatch(userActions.fetchUserRegister(values))
+            .then(({ status }: any) => {
+                if (status === "success") {
+                    setTimeout(() => {
+                        props.history.push("/");
+                    }, 3000);
+                }
+                setSubmitting(false);
+            })
+            .catch(() => {
+                setSubmitting(false);
+            })
     },
 
     displayName: 'RegisterForm', // helps with React DevTools

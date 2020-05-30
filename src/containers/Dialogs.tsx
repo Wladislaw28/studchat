@@ -8,19 +8,19 @@ const Dialogs = ({ setCurrentDialogId, currentDialogId, fetchDialogs, items, use
     const [inputValue, setValue] = useState("");
     const [filtred, setFiltredItems] = useState(Array.from(items));
 
-    // useEffect(() => {
-    //     if (!items.length) {
-    //         fetchDialogs();
-    //     } else {
-    //         setFiltredItems(items);
-    //     }
-    // }, [items]);
+    useEffect(() => {
+        if (!items.length) {
+            fetchDialogs();
+        } else {
+            setFiltredItems(items);
+        }
+    }, [items]);
 
     const onChangeInput = (value: any) => {
         setFiltredItems(
             items.filter(
                 (dialog: any) =>
-                    dialog.user.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0
+                    dialog.user.fullName.toLowerCase().indexOf(value.toLowerCase()) >= 0
             )
         );
         setValue(value);

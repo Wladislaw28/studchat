@@ -28,6 +28,9 @@ const LoginFormContainer = withFormik<{}, LoginFormValues>({
                 }
                 setSubmitting(false);
             })
+            .catch(() => {
+                setSubmitting(false);
+            })
     },
 
     displayName: 'LoginForm', // helps with React DevTools

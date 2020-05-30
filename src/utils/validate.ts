@@ -7,7 +7,8 @@ interface IValidateForm {
 interface IRules {
     email: (value: any) => void;
     password: (value: any) => void;
-    login: (value: any) => void;
+    password_2: (value: any) => void;
+    fullName: (value: any) => void;
 }
 
 export const validateForm = ({ isAuth, values, errors }: IValidateForm): void => {
@@ -26,9 +27,14 @@ export const validateForm = ({ isAuth, values, errors }: IValidateForm): void =>
                 errors.password = isAuth ? 'Неверный пароль' : 'Пароль должен содержать минимум восемь символов, как минимум одна буква и одна цифра';
             }
         },
-        login: (value: any) => {
+        password_2: (value: any) => {
+            if ((!isAuth && value !== values.password) || !value) {
+                errors.password_2 = 'Пароль не совпадают';
+            }
+        },
+        fullName: (value: any) => {
             if (!value) {
-                errors.login = 'Введите имя пользователя';
+                errors.fullName = 'Введите имя пользователя';
             }
         }
     };
