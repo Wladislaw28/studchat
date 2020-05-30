@@ -14,12 +14,44 @@ class UserController {
         this.io = io;
     }
 
+    create = async (req: Request, res: Response) => {
+        const postData = {
+            email: req.body.email,
+            fullName: req.body.fullName,
+            password: req.body.password,
+            confirm_hash: ''
+        }
+        postData.password = await bcrypt.hash(postData.password, 10);
+
+        postData.confirm_hash = await bcrypt.hash(+new Date() + '', 10);
+
+        const errors: any = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(422).json({
+                errors: errors.array()
+            });
+        }
+
+        const user: IUser = new UserModel(postData);
+        user.save()
+            .then((obj: any) => {
+                res.json(obj);
+            })
+            .catch(reason => {
+                return res.status(500).json({
+                    status: "error",
+                    message: reason
+                })
+            });
+    };
+
     login = (req: Request, res: Response) => {
         const postData = {
             email: req.body.email,
             password: req.body.password
         };
-        const errors: Result<ValidationError> = validationResult(req);
+        const errors: any = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(422).json({
                 errors: errors.array()
@@ -38,13 +70,46 @@ class UserController {
                     token: token
                 })
             } else {
-                res.json({
+                res.status(403).json({
                     status: 'fail',
                     message: 'incorrect email or password'
                 })
             }
         })
     };
+
+    verify = (req: Request, res: Response) => {
+        const hash = req.query.hash;
+
+        if (!hash) {
+            return res.status(422).json({
+                errors: 'Invalid hash'
+            })
+        }
+
+        UserModel.findOne({ confirm_hash: hash }, (err, user) => {
+            if (err || !user) {
+                return res.status(404).json({
+                    status: "error",
+                    message: 'Not found hash'
+                })
+            }
+
+            user.confirmed = true;
+            user.save((err) => {
+                if (err) {
+                    return res.status(404).json({
+                        status: "error",
+                        message: err
+                    })
+                }
+                res.json({
+                    status: 'success',
+                    message: 'Аккаунт успешно подтверждён'
+                });
+            })
+        });
+    }
 
     show = (req: Request, res: Response) => {
         const id: string = req.params.id;
@@ -61,30 +126,13 @@ class UserController {
     getMe = (req: any, res: Response) => {
         const id: string = req.user._id;
         UserModel.findById(id, (err, user) => {
-            if (err) {
+            if (err || !user) {
                 return res.status(404).json({
                     message: 'Not found user'
                 })
             }
             res.json(user);
         });
-    };
-
-    create = async (req: Request, res: Response) => {
-        const postData = {
-            email: req.body.email,
-            fullName: req.body.fullName,
-            password: req.body.password
-        }
-        postData.password = await bcrypt.hash(postData.password, 10);
-        const user: IUser = new UserModel(postData);
-        user.save()
-            .then((obj: any) => {
-                res.json(obj);
-            })
-            .catch((reason) => {
-                res.json(reason);
-            });
     };
 
     delete = (req: Request, res: Response) => {

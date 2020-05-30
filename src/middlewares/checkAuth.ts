@@ -10,8 +10,9 @@ import { verifyJWTToken } from '../utils';
 // }
 
 export default (req: any, res: Response, next: NextFunction) => {
-    if (req.path === '/user/login' ||
-        req.path === '/user/registration') {
+    if (req.path === '/user/signin' ||
+        req.path === '/user/signup' ||
+        req.path === '/user/verify') {
         return next();
     }
     const token = req.headers.token;

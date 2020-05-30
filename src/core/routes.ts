@@ -3,7 +3,7 @@ import socket from 'socket.io';
 
 import bodyParser from 'body-parser';
 
-import { loginValidation } from '../utils/validations';
+import { loginValidation, registerValidation } from '../utils/validations';
 import { updateLastSeen, checkAuth } from '../middlewares';
 
 import { UserCtrl, DialogCtrl, MessageCtrl } from '../controllers';
@@ -15,14 +15,17 @@ const createRoutes = (app: express.Express, io: socket.Server) => {
     const MessageController = new MessageCtrl(io);
 
     app.use(bodyParser.json());
-    app.use(updateLastSeen);
     app.use(checkAuth);
+    app.use(updateLastSeen);
 
     app.get('/user/me', UserController.getMe);
+    app.get('/user/verify', UserController.verify);
+
+    app.post("/user/signup", registerValidation, UserController.create);
+    app.post("/user/signin", loginValidation, UserController.login);
+
     app.get('/user/:id', UserController.show);
     app.delete('/user/:id', UserController.delete);
-    app.post("/user/registration", UserController.create);
-    app.post("/user/login", loginValidation, UserController.login)
 
     app.get('/dialogs', DialogController.index);
     app.delete('/dialogs/:id', DialogController.delete);

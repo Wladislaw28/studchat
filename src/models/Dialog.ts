@@ -5,13 +5,13 @@ export interface IDialog extends Document {
     author: {
         type: Schema.Types.ObjectId;
         ref: string;
-        require: boolean;
+        require: true;
     };
-    partners: [{
+    partners: {
         type: Schema.Types.ObjectId;
         ref: string;
-        require: boolean;
-    }];
+        require: true;
+    };
     messages: [{
         type: Schema.Types.ObjectId;
         ref: string;
@@ -19,8 +19,8 @@ export interface IDialog extends Document {
 }
 
 const DialogSchema = new Schema({
-    author: { type: Schema.Types.ObjectId, ref: 'User', require: Boolean },
-    partners: [{ type: Schema.Types.ObjectId, ref: 'User', require: Boolean }],
+    author: { type: Schema.Types.ObjectId, ref: 'User' },
+    partners: { type: Schema.Types.ObjectId, ref: 'User' },
     lastMessage: { type: Schema.Types.ObjectId, ref: 'Message' },
 }, {
     timestamps: true
