@@ -18,6 +18,7 @@ const actions = {
         dialogsApi.getAll()
             .then(({ data }) => {
                 dispatch(actions.setDialogs(data));
+                dispatch(actions.setIsLoading(false));
             })
             .catch(() => {
                 dispatch(actions.setIsLoading(false));

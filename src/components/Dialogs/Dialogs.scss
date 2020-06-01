@@ -19,13 +19,18 @@
         }
     }
     &__item {
+        $item: &;
         display: flex;
         cursor: pointer;
         margin-bottom: 20px;
-        $item: &;
+        color: $black;
+
+        &:hover {
+            background-color: #f3f7ff;
+        }
 
         &--selected {
-            background-color: #6073ff !important;
+            background-color: #6776e6 !important;
             color: white;
         }
 
