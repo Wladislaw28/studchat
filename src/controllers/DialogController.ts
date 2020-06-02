@@ -94,33 +94,6 @@ class DialogController {
         );
     };
 
-    // create = (req: Request, res: Response) => {
-    //     const postData = {
-    //         author: req.body.author,
-    //         partners: req.body.partners
-    //     }
-    //     const dialog: IDialog = new DialogModel(postData);
-    //     dialog.save()
-    //         .then((dialogObj: any) => {
-    //             const message: IMessage = new MessageModel({
-    //                 text: req.body.text,
-    //                 dialog: dialogObj._id,
-    //                 user: req.body.author,
-    //             });
-    //             message.save()
-    //                 .then(() => {
-    //                     res.json(dialogObj);
-    //                 })
-    //                 .catch((reason) => {
-    //                     res.json(reason);
-    //                 })
-
-    //         })
-    //         .catch((reason) => {
-    //             res.json(reason);
-    //         });
-    // }
-
     delete = (req: Request, res: Response) => {
         const id: any = req.params.id;
         DialogModel.findOneAndRemove({ _id: id })

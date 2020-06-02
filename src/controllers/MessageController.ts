@@ -10,13 +10,16 @@ class MessageController {
         this.io = io;
     }
 
-    index = (req: Request, res: Response) => {
-        const dialogId: any = req.query.dialog;
+    index = (req: any, res: Response) => {
+        const dialogId = req.query.dialog;
+        const userId = req.user._id;
+
         MessageModel.find({ dialog: dialogId })
-            .populate(["dialog"])
-            .exec((err, messages) => {
+            .populate(["dialog", "user"])
+            .exec(function (err, messages) {
                 if (err) {
                     return res.status(404).json({
+                        status: 'error',
                         message: 'Messages not fount'
                     })
                 }
@@ -33,9 +36,9 @@ class MessageController {
         const message: IMessage = new MessageModel(postData);
         message.save()
             .then((obj: any) => {
-                obj.populate("dialog", (err: any, message: any) => {
+                obj.populate(["dialog", "user"], (err: any, message: any) => {
 
-                    if (err || !(obj.populate("dialog").dialog)) {
+                    if (err) {
                         return res.status(500).json({
                             status: "error",
                             message: err
