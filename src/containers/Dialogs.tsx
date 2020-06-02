@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Dialogs as BaseDialogs } from "../components";
 import { dialogsActions } from '../redux/actions';
 
+import socket from "../core/socket";
+
 const Dialogs = ({ setCurrentDialogId, currentDialogId, fetchDialogs, items, userId, isLoading }: any) => {
     const [inputValue, setValue] = useState("");
     const [filtred, setFiltredItems] = useState(Array.from(items));
@@ -14,6 +16,9 @@ const Dialogs = ({ setCurrentDialogId, currentDialogId, fetchDialogs, items, use
         } else {
             setFiltredItems(items);
         }
+        socket.on("SERVER:DIALOG_CREATED", (data: any) => {
+            fetchDialogs();
+        })
     }, [items]);
 
     const onChangeInput = (value: any) => {
